@@ -19,6 +19,7 @@ const UnauthorizedAccess = () =>
                 className='bp4-button bp4-large bp4-fill'
                 text={`Log In`} 
                 onClick={() => signIn('keycloak')}
+                active={false}
             />
            <Button 
                 type='button' 

@@ -1,8 +1,10 @@
 import { Button } from '@blueprintjs/core';
 import { signOut } from 'next-auth/react';
 import Head from 'next/head'
+import Layout from '../../components/Layout/Layout';
 
 const HomePage = () => 
+<Layout>
 <div className="container">
   <Head>
     <title>Create Next App</title>
@@ -60,15 +62,7 @@ const HomePage = () =>
       Powered by{' '}
       <img src="/vercel.svg" alt="Vercel" className="logo" />
     </a>
-    <Button
-        type='button' 
-        className='bp4-button .bp4-large .bp4-fill'
-        onClick={() => signOut({
-          redirect: true,
-          callbackUrl: "/",
-        })}
-        text={"Log Out"}
-    />
+    
   </footer>
 
   <style jsx>{`
@@ -217,5 +211,6 @@ const HomePage = () =>
     }
   `}</style>
   </div>
+</Layout>
 
 export default HomePage;
