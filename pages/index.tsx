@@ -1,15 +1,25 @@
 import { useRouter } from 'next/router'
-import { signIn, signOut } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
+import type { SessionContextValue } from 'next-auth/react'
+import Loader from '../components/Loader/Loader'
+import UnauthorizedAccess from '../components/UnauthorizedAccess/UnauthorizedAccess'
 
 const Home = () => {
+  const data: SessionContextValue = useSession()
   const router = useRouter();
 
-  return (
-    <div>
-      <button onClick={() => signIn('keycloak')}>Log in</button>
-      <button onClick={() => signOut()}>Logout</button>
-    </div>
-  )
+  switch(data.status) {
+    case 'authenticated': {
+      router.push("/HomePage")
+      return <></>;
+    }
+    case 'unauthenticated': 
+      return <UnauthorizedAccess/>;
+    case 'loading': 
+      return <Loader/>;
+    default:
+      return <div>Eror</div>
+  }
 }
 
 export default Home;

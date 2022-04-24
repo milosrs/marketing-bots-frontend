@@ -26,13 +26,16 @@ export default NextAuth({
   ],
   callbacks: {
     jwt: (data: JWTData): Awaitable<JWT> => {
-      console.log(data)
       return data.token
     },
     session: (data: SessionData): Awaitable<Session> => {
-      console.log(data)
       return data.session
     },
+  },
+  events: {
+    signOut: (message: any): Awaitable<void> => {
+      console.log("I have signed out: ", message)
+    }
   },
   secret: "mysecret",
 })
