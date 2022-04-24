@@ -15,8 +15,8 @@ const Layout = ({children}: IProps) => {
     const testRoute = (url: string) => router.pathname.includes(url)
 
     return (
-        <div className='container'>
-            <Navbar fixedToTop={true} className='bp4-dark'>
+        <div>
+            <Navbar fixedToTop={true} className='bp4-dark' >
                 <Navbar.Group align='left'>
                     <Navbar.Heading>Botomania</Navbar.Heading>
                     <Navbar.Divider/>
@@ -43,13 +43,19 @@ const Layout = ({children}: IProps) => {
                 </Navbar.Group>
 
                 <Navbar.Group align='right'>
-                    <span> Hello, {data?.user?.name}</span>
+                    <span className='greet'> Hello, {data?.user?.name}</span>
                     <Button
                         icon='power' type='button' className='bp4-button .bp4-large .bp4-fill' text='Logout'
                         onClick={() => signOut({redirect: true, callbackUrl: "/"})}
                     />
                 </Navbar.Group>
             </Navbar>
+            {children}
+            <style jsx>{`
+                .greet {
+                    margin-right: 15px;
+                }
+            `}</style>
         </div>
     )
 }

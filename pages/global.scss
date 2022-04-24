@@ -1,0 +1,44 @@
+@import "~normalize.css";
+@import "~@blueprintjs/core/lib/css/blueprint.css";
+@import "~@blueprintjs/icons/lib/css/blueprint-icons.css";
+
+$panelGap: 8px;
+
+html {
+    color: white;
+    width: 100%;
+    height: 100%;
+    background-color: #121212;
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+        Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+        sans-serif;
+}
+
+body {
+    color: white;
+    width: 100%;
+    height: 100%;
+    background-color: #121212;
+    padding-top: 60px;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+        Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+        sans-serif;
+}
+
+#__next {
+    width: 100%;
+    height: 100%;
+    background-color: #121212;
+    color: white;
+}
+
+* > .panel {
+    background-color: #242526;
+    color: white;
+    padding: 8px;
+    margin: $panelGap; 
+    border-radius: 16px;
+}

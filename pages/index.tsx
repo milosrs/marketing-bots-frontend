@@ -2,24 +2,40 @@ import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 import type { SessionContextValue } from 'next-auth/react'
 import UnauthorizedAccess from '../components/UnauthorizedAccess/UnauthorizedAccess'
-import { Spinner } from '@blueprintjs/core'
+import { Loader } from '../components/Loader/Loader'
+import Head from 'next/head'
 
 const Home = () => {
   const data: SessionContextValue = useSession()
   const router = useRouter();
-
+  let ret = <></>
+  const head = 
+  <Head>
+    <title>Welcome to botomania</title>
+    <link rel="icon" href="/favicon.ico" />
+  </Head>
+  
   switch(data.status) {
     case 'authenticated': {
       router.push("/HomePage")
-      return <></>;
+      ret = <></>;
+      break;
     }
     case 'unauthenticated': 
-      return <UnauthorizedAccess/>;
+      ret = <UnauthorizedAccess/>;
+      break;
     case 'loading': 
-      return <Spinner/>;
+      ret = <Loader/>;
+      break;
     default:
-      return <div>Eror</div>
+      ret = <div>Eror</div>;
+      break;
   }
+
+  return <div className='container'>
+    {head}
+    {ret}
+  </div>
 }
 
 export default Home;
