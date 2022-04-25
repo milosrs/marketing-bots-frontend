@@ -1,16 +1,21 @@
 import React from 'react'
 import {signIn, signOut} from 'next-auth/react'
 import { Button, ButtonGroup } from '@blueprintjs/core';
+import {Networks} from '../Networks/Networks';
+import { AllSocialNetworks } from '../../const/constants';
 
 const UnauthorizedAccess = () => 
 <div className='container bp4-dark'>
     <div className='unauthorized-access'>
         <h1 className='bp4-heading'>Welcome to Botomania</h1>
 
+        <div className='social-container'><Networks networks={AllSocialNetworks}/></div>
+
         <div className='bp4-running-text'>
             In order to continue using this service you have to log in. 
             If you don't have an account, contact the administrator.
         </div>
+
         <div className='bp4-text-small'>Administrator e-mail: milosribar@yahoo.com</div>
 
         <ButtonGroup className='bp4-fill bp4-large btn-group' style={{padding: '16px'}}>
@@ -43,6 +48,19 @@ const UnauthorizedAccess = () =>
                 justify-content: center;
                 justify-items: center;
                 align-items: center;
+            }
+
+            .unauthorized-access {
+                display:flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .social-container {
+                width: 80%;
+                font-size: 24px;
+                margin: 4px 0px 24px 0px;
             }
 
             h1 {

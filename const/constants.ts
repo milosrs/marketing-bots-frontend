@@ -1,1 +1,0 @@
-export type SocialNetworks = 'facebook' | 'instagram' | 'tiktok' | 'linkedin' | 'youtube' | 'telegram';
