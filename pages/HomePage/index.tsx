@@ -6,19 +6,19 @@ const mockDetails = [
 {
   name: 'Kurosawa',
   description: 'My first bot',
-  socialNetworks: ['facebook', 'instagram', 'linkedin', 'telegram', 'tiktok', 'youtube'],
+  SocialNetwork: ['facebook', 'instagram', 'linkedin', 'telegram', 'tiktok', 'youtube'],
   isActive: true,
 },
 {
   name: 'Kurosawa2',
   description: 'My second bot',
-  socialNetworks: ['telegram'],
+  SocialNetwork: ['telegram'],
   isActive: false,
 },
 {
   name: 'Kurosawa3',
   description: 'My third bot',
-  socialNetworks: ['facebook', 'instagram', 'linkedin', 'youtube'],
+  SocialNetwork: ['facebook', 'instagram', 'linkedin', 'youtube'],
   isActive: false,
 },
 ] as Bot[];

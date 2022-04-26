@@ -1,12 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { SocialNetworks } from "../../const/constants";
+import { SocialNetwork } from "../../const/constants";
 import { Networks } from "../Networks/Networks";
 
 export interface Bot {
     name: string;
     description: string;
-    socialNetworks: SocialNetworks[];
+    SocialNetwork: SocialNetwork[];
     isActive: boolean;
 }
 
@@ -30,7 +30,7 @@ export const BotDetails = ({bots}: IProps) =>
         <tr key={`bot-desc-${i}`}>
             <td>{x.name}</td>
             <td>{x.description}</td>
-            <td className="sn"><Networks networks={x.socialNetworks}/></td>
+            <td className="sn"><Networks networks={x.SocialNetwork}/></td>
             <td>
                 <div className='indicator'>
                     <FontAwesomeIcon icon={'circle'} color={x.isActive ? 'green' : 'red'}/>

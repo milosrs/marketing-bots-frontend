@@ -6,11 +6,11 @@ import './global.scss'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faFacebookF, faInstagram, faTiktok, faYoutube, faLinkedinIn, faTelegram } from '@fortawesome/free-brands-svg-icons'
+import { faFacebookF, faTwitter, faReddit, faInstagram, faTiktok, faYoutube, faLinkedinIn, faTelegram } from '@fortawesome/free-brands-svg-icons'
 import { faCheckSquare, faCoffee, faCircle } from '@fortawesome/free-solid-svg-icons'
 
 config.autoAddCss = false
-library.add(faFacebookF, faInstagram, faTiktok, faYoutube, faLinkedinIn, faTelegram, faCheckSquare, faCoffee, faCircle)
+library.add(faFacebookF, faTwitter, faReddit, faInstagram, faTiktok, faYoutube, faLinkedinIn, faTelegram, faCheckSquare, faCoffee, faCircle)
 
 
 export default function App({Component, pageProps}: AppProps) {
