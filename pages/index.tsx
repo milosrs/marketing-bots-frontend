@@ -18,17 +18,14 @@ const Home = () => {
   
   switch(data.status) {
     case 'authenticated': {
-      console.log("Authenticated!", data)
       router.push("/HomePage")
       ret = <></>;
       break;
     }
     case 'unauthenticated': 
-      console.log("Unauthenticated!", data)
       ret = <UnauthorizedAccess/>;
       break;
     case 'loading': 
-      console.log("Loading!", data)
       ret = <Loader size={SpinnerSize.LARGE}/>;
       break;
     default:

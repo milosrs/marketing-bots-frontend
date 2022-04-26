@@ -3,6 +3,7 @@ import { createIcon, SocialNetworks } from '../../const/constants';
 
 interface IProps {
     networks: SocialNetworks[];
+    detailed?: boolean;
 }
 
 export const Networks = ({networks}: IProps) => 

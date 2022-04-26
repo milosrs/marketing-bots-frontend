@@ -1,8 +1,7 @@
-import { Button, Menu, MenuItem, Navbar } from '@blueprintjs/core';
+import { Button, Navbar } from '@blueprintjs/core';
 import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
-import React from 'react'
-import { Session } from 'next-auth';
+import React, { useLayoutEffect } from 'react'
 
 interface IProps {
     children: React.ReactElement;
@@ -11,6 +10,12 @@ interface IProps {
 const Layout = ({children}: IProps) => {
     const router = useRouter();
     const {data} = useSession();
+
+    useLayoutEffect(() => {
+        if (!data || data?.status === 'unauthorized') {
+            router?.push('/')
+        }
+    })
 
     const testRoute = (url: string) => router.pathname.includes(url)
 
