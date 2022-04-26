@@ -16,7 +16,7 @@ const Layout = ({children}: IProps) => {
 
     return (
         <div>
-            <Navbar fixedToTop={true} className='bp4-dark' >
+            <Navbar fixedToTop={true} className='bp4-dark'>
                 <Navbar.Group align='left'>
                     <Navbar.Heading>Botomania</Navbar.Heading>
                     <Navbar.Divider/>

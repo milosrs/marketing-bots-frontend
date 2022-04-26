@@ -1,6 +1,27 @@
 import Head from 'next/head'
 import Layout from '../../components/Layout/Layout';
-import {BotDetails} from '../../components/BotDetails/BotDetails';
+import {Bot, BotDetails} from '../../components/BotDetails/BotDetails';
+
+const mockDetails = [
+{
+  name: 'Kurosawa',
+  description: 'My first bot',
+  socialNetworks: ['facebook', 'instagram', 'linkedin', 'telegram', 'tiktok', 'youtube'],
+  isActive: true,
+},
+{
+  name: 'Kurosawa2',
+  description: 'My second bot',
+  socialNetworks: ['telegram'],
+  isActive: false,
+},
+{
+  name: 'Kurosawa3',
+  description: 'My third bot',
+  socialNetworks: ['facebook', 'instagram', 'linkedin', 'youtube'],
+  isActive: false,
+},
+] as Bot[];
 
 const HomePage = () => 
 <Layout>
@@ -15,12 +36,7 @@ const HomePage = () =>
     </div>
 
     <div className='panel'>
-      <BotDetails 
-        name='Kurosawa'
-        description='My first bot' 
-        socialNetworks={['facebook', 'instagram', 'linkedin', 'telegram', 'tiktok', 'youtube']} 
-        isActive={true}
-      />
+      <BotDetails bots={mockDetails}/>
     </div>
     <style jsx>{`
       h1 {
