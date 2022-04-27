@@ -1,22 +1,24 @@
 import React, { CSSProperties } from 'react'
 import Layout from '../../components/Layout/Layout';
 import {NetworkTag} from '../../components/NetworkTag/NetworkTag';
-import { AllSocialNetworks, AllModules } from '../../const/constants';
+import { AllSocialNetworks, AllModules, createModuleIcon } from '../../const/constants';
 import {Panel} from '../../components/Panel/Panel';
+import { Button } from '@blueprintjs/core';
 
 const CreateBot = () => {
-    const socialMediaStyle: CSSProperties = {
+    const panelContentStyle: CSSProperties = {
         display: 'flex', 
         flexDirection: 'column',
-        justifyContent: 'space-between',
-        minHeight: '350px'
+        justifyContent: 'space-between'
     }
 
-    const modulesPanel = <div className='modules-panel'>
-        {AllModules.map((x, i) => <p key={`p-${i}`}>{x}</p>)}
+    const modulesPanel = <div style={panelContentStyle}>
+        {AllModules.map((x, i) =>
+            <Button icon={createModuleIcon(x)} style={{margin: '6px', color: 'black'}} intent='warning' key={`module-${i}`}>{x}</Button>
+        )}
     </div>
 
-    const networksPanel = <div style={socialMediaStyle}>
+    const networksPanel = <div style={panelContentStyle}>
         {AllSocialNetworks.map((x, i) => 
             <NetworkTag socialNetwork={x} key={i} interactive/>
         )}
@@ -40,8 +42,17 @@ const CreateBot = () => {
                 text-align: center;
             }
 
+            .modules-panel {
+                display: flex;
+                flex-direction: row;
+            }
+
             .content > * {
                 margin: 4px;
+            }
+
+            .separated > button {
+                margin: 6px;
             }
             -
         `}</style>

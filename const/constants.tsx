@@ -1,11 +1,9 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Icon } from "@blueprintjs/core";
 
 export type SocialNetwork = 'facebook' | 'reddit' | 'instagram' | 'tiktok' | 'twitter' | 'linkedin' | 'youtube' | 'telegram';
 export const AllSocialNetworks = ['facebook', 'instagram', 'reddit', 'linkedin', 'telegram', 'twitter', 'tiktok', 'youtube'] as SocialNetwork[];
-
-export type Modules = 'subscriber' | 'streamer' | 'scheduler';
-export const AllModules = ['scheduler', 'streamer', 'subscriber'] as Modules[];
 
 export const SocialNetworkCollors: Record<SocialNetwork, string> = {
     'facebook': '#3B5998',
@@ -28,5 +26,16 @@ export const createIcon = (network: SocialNetwork, k?: number): JSX.Element => {
         case 'youtube': return <FontAwesomeIcon icon={['fab', 'youtube']} key={k}/>
         case 'twitter': return <FontAwesomeIcon icon={['fab', 'twitter']} key={k}/>
         case 'reddit': return <FontAwesomeIcon icon={['fab', 'reddit']} key={k}/>
+    }
+}
+
+export type Module = 'subscriber' | 'streamer' | 'scheduler';
+export const AllModules = ['scheduler', 'streamer', 'subscriber'] as Module[];
+
+export const createModuleIcon = (module: Module) => {
+    switch(module) {
+        case 'scheduler': return <Icon icon='git-repo'/>
+        case 'streamer': return <Icon icon='upload'/>
+        case 'subscriber': return <Icon icon='git-new-branch'/>
     }
 }
