@@ -1,10 +1,11 @@
-import { useRouter } from 'next/router'
+import React, {useLayoutEffect} from 'react'
 import { useSession } from 'next-auth/react'
 import type { SessionContextValue } from 'next-auth/react'
 import UnauthorizedAccess from '../components/UnauthorizedAccess/UnauthorizedAccess'
 import { Loader } from '../components/Loader/Loader'
 import Head from 'next/head'
 import { SpinnerSize } from '@blueprintjs/core'
+import { useRouter } from 'next/router'
 
 const Home = () => {
   const data: SessionContextValue = useSession()
@@ -15,12 +16,11 @@ const Home = () => {
     <title>Welcome to botomania</title>
     <link rel="icon" href="/favicon.ico" />
   </Head>
-  
+
   switch(data.status) {
     case 'authenticated': {
-      router.push("/HomePage")
-      ret = <></>;
-      break;
+      router.push('/HomePage')
+      return <></>;
     }
     case 'unauthenticated': 
       ret = <UnauthorizedAccess/>;

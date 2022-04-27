@@ -35,7 +35,7 @@ body {
     color: white;
 }
 
-* > .panel {
+.panel {
     background-color: #242526;
     color: white;
     padding: 8px;
@@ -44,4 +44,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.panel.left {
+    justify-content: left !important;
+}
+
+.panel.top {
+    align-items: unset !important;
 }

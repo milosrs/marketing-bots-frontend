@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export type SocialNetwork = 'facebook' | 'reddit' | 'instagram' | 'tiktok' | 'twitter' | 'linkedin' | 'youtube' | 'telegram';
 export const AllSocialNetworks = ['facebook', 'instagram', 'reddit', 'linkedin', 'telegram', 'twitter', 'tiktok', 'youtube'] as SocialNetwork[];
 
+export type Modules = 'subscriber' | 'streamer' | 'scheduler';
+export const AllModules = ['scheduler', 'streamer', 'subscriber'] as Modules[];
+
 export const SocialNetworkCollors: Record<SocialNetwork, string> = {
     'facebook': '#3B5998',
     'instagram': 'linear-gradient(90deg, #833AB4 20%, #E1306C 30%, #F56040 50%, #FFDC80 100%)',
