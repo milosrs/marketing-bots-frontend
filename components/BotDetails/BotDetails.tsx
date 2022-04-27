@@ -1,3 +1,4 @@
+import { Button, ButtonGroup } from "@blueprintjs/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { SocialNetwork } from "../../const/constants";
@@ -16,13 +17,14 @@ interface IProps {
 
 export const BotDetails = ({bots}: IProps) => 
 <>
-<table className="bp4-html-table details-table bp4-interactive">
+<table className="bp4-html-table details-table">
     <thead>
         <tr>
-            <th className="name">Bot Name</th>
-            <th className="desc">Description</th>
-            <th className="sn">Supported Social Networks</th>
-            <th className="stat">Status</th>
+            <th>Bot Name</th>
+            <th>Description</th>
+            <th>Supported Social Networks</th>
+            <th>Status</th>
+            <th>Controls</th>
         </tr>
     </thead>
     <tbody>
@@ -31,10 +33,16 @@ export const BotDetails = ({bots}: IProps) =>
             <td>{x.name}</td>
             <td>{x.description}</td>
             <td className="sn"><Networks networks={x.SocialNetwork}/></td>
-            <td>
+            <td align="center" valign="middle">
                 <div className='indicator'>
                     <FontAwesomeIcon icon={'circle'} color={x.isActive ? 'green' : 'red'}/>
                 </div>
+            </td>
+            <td>
+                <ButtonGroup alignText="center">
+                    {x.isActive ? <Button intent="danger" text='Stop'/> : <Button intent="success" text='Start'/>}
+                    <Button intent='primary' text='View Logs'/>
+                </ButtonGroup>
             </td>
         </tr>
     ))}
@@ -49,27 +57,19 @@ export const BotDetails = ({bots}: IProps) =>
         border-bottom: 1px solid;
         border-color: white;
     }
+    
 
     th:not(:last-child), td:not(:last-child) {
         border-right: 1px solid;
         border-color: white
     }
 
-    .name {
-        width: 15%;
-    }
-
-    .desc {
-        width: 25%;
-    }
-
-    .sn {
-        width: 40%;
-    }
-
     .indicator {
         display: flex;
         justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
     }
 
     .details-table {
@@ -79,7 +79,8 @@ export const BotDetails = ({bots}: IProps) =>
 
     .details-table > tbody > tr > td {
         color: white; 
-        border-color: white
+        border-color: white;
+        vertical-align: middle;
     }
 
     .details-table > thead > tr > th {

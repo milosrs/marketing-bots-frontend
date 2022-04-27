@@ -1,25 +1,32 @@
 import Head from 'next/head'
 import Layout from '../../components/Layout/Layout';
 import {Bot, BotDetails} from '../../components/BotDetails/BotDetails';
+import { AllSocialNetworks } from '../../const/constants';
 
 const mockDetails = [
 {
-  name: 'Kurosawa',
+  name: 'Try me :)',
   description: 'My first bot',
-  SocialNetwork: ['facebook', 'instagram', 'linkedin', 'telegram', 'tiktok', 'youtube'],
+  SocialNetwork: AllSocialNetworks,
   isActive: true,
 },
 {
-  name: 'Kurosawa2',
+  name: 'Satoshi Nakamoto',
   description: 'My second bot',
   SocialNetwork: ['telegram'],
   isActive: false,
 },
 {
-  name: 'Kurosawa3',
+  name: 'Call of the legion',
   description: 'My third bot',
   SocialNetwork: ['facebook', 'instagram', 'linkedin', 'youtube'],
   isActive: false,
+},
+{
+  name: 'For the Horde',
+  description: 'My 4th bot',
+  SocialNetwork: ['reddit', 'twitter', 'telegram'],
+  isActive: true,
 },
 ] as Bot[];
 

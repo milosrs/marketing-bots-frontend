@@ -58,7 +58,6 @@ const UnauthorizedAccess = () =>
             }
 
             .social-container {
-                width: 80%;
                 font-size: 24px;
                 margin: 4px 0px 24px 0px;
             }

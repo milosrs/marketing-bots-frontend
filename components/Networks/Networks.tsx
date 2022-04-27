@@ -11,10 +11,14 @@ export const Networks = ({networks, detailed}: IProps) =>
 <>
 <div className='networks'>
     {networks.map((x, i) => 
-        !detailed ? createIcon(x, i) : 
-        <div key={`social-network-tag-${i}`}>
+        <div className="network-container" key={`social-network-tag-${i}`}>
             <span className='icon'>{createIcon(x, i)}</span>
-            <span className='full-name'>{capitalizeFirstLetter(x)}</span>
+            {detailed 
+                ? <span className='full-name'>
+                    {capitalizeFirstLetter(x)}
+                </span> 
+                : null 
+            }
         </div>
     )}
 </div>
@@ -22,8 +26,12 @@ export const Networks = ({networks, detailed}: IProps) =>
 .networks {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: left;
     align-items: space-between;
+}
+
+.network-container {
+    margin-right: 6px;
 }
 
 .icon {

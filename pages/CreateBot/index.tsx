@@ -17,7 +17,9 @@ const CreateBot = () => {
     </div>
 
     const networksPanel = <div style={socialMediaStyle}>
-        {AllSocialNetworks.map((x, i) => <NetworkTag socialNetwork={x} key={i}/>)}
+        {AllSocialNetworks.map((x, i) => 
+            <NetworkTag socialNetwork={x} key={i} interactive/>
+        )}
     </div>
 
     return <Layout>
