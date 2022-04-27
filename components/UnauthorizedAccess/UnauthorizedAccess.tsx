@@ -26,15 +26,6 @@ const UnauthorizedAccess = () =>
                 onClick={() => signIn('keycloak')}
                 active={false}
             />
-           <Button 
-                type='button' 
-                className='bp4-button bp4-large bp4-fill'
-                text={`Log Out`} 
-                onClick={() => signOut({
-                    redirect: true,
-                    callbackUrl: "/",
-                })}
-            />
         </ButtonGroup>
     </div>
     <style jsx>
