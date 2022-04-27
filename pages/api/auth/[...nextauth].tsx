@@ -34,7 +34,6 @@ export default NextAuth({
   },
   events: {
     signOut: (message: any): Awaitable<void> => {
-      console.log("I have signed out: ", message)
     }
   },
   secret: "mysecret",

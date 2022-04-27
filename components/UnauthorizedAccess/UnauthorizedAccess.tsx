@@ -67,6 +67,7 @@ const UnauthorizedAccess = () =>
                 text-align: center;
                 color: white !important;
             }
+            
         `}
     </style>
 </div>

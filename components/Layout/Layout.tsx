@@ -1,7 +1,7 @@
 import { Button, Navbar, SpinnerSize } from '@blueprintjs/core';
 import { useRouter } from 'next/router';
 import { SessionContextValue, signOut, useSession } from 'next-auth/react';
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import {Paths} from '../../const/paths';
 import {IconName} from '@blueprintjs/core'
 import { Loader } from '../Loader/Loader';
@@ -17,7 +17,7 @@ const Layout = ({children}: IProps) => {
     const [loading, setLoading] = useState<boolean>();
     const [unauthorized, setUnauthorized] = useState<boolean>();
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (!sessionData || sessionData.status === 'loading') {
             setLoading(true);   
         } else if (sessionData.status === 'unauthenticated') {
@@ -48,7 +48,7 @@ const Layout = ({children}: IProps) => {
     }
 
     return (
-        <div>
+        <div className='padded'>
             <Navbar fixedToTop={true} className='bp4-dark'>
                 <Navbar.Group align='left'>
                     <Navbar.Heading>Botomania</Navbar.Heading>
@@ -71,6 +71,10 @@ const Layout = ({children}: IProps) => {
             <style jsx>{`
                 .greet {
                     margin-right: 15px;
+                }
+
+                .padded {
+                    padding-top: 60px;
                 }
             `}</style>
         </div>
