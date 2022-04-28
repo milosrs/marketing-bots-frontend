@@ -1,7 +1,7 @@
 import { Button, ButtonGroup } from "@blueprintjs/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { SocialNetwork } from "../../const/constants";
+import { SocialNetwork } from "../../const/serverConstants";
 import { Networks } from "../Networks/Networks";
 
 export interface Bot {

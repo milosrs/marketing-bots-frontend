@@ -1,12 +1,30 @@
-import React, { CSSProperties } from 'react'
+import React, { ChangeEvent, CSSProperties, useState } from 'react'
 import Layout from '../../components/Layout/Layout';
 import {NetworkTag} from '../../components/NetworkTag/NetworkTag';
-import { AllSocialNetworks, AllModules, createModuleIcon } from '../../const/constants';
+import { AllSocialNetworks, AllModules, createModuleIcon } from '../../const/serverConstants';
 import {Panel} from '../../components/Panel/Panel';
-import { Button, Classes, FormGroup, TextArea } from '@blueprintjs/core';
+import { Button, Classes, FormGroup, SpinnerSize, TextArea } from '@blueprintjs/core';
 import { capitalizeFirstLetter } from '../../ts-lib/strings';
+import dynamic from 'next/dynamic';
+import { Loader } from '../../components/Loader/Loader';
+import { BotData } from '../../const/graphModel';
+
+const BotCreationChart = dynamic(
+    () => import('../../components/BotCreationChart/BotCreationChart'), 
+    {
+        ssr: false,
+        loading: () => <Loader size={SpinnerSize.STANDARD}/>,
+    }
+)
 
 const CreateBot = () => {
+    const [botData, setBotData] = useState<BotData>({
+        name: 'Enter bot name',
+        description: '',
+        networks: [],
+        module: undefined,
+    });
+
     const panelContentStyle: CSSProperties = {
         display: 'flex', 
         flexDirection: 'column',
@@ -19,7 +37,12 @@ const CreateBot = () => {
                 icon={createModuleIcon(x)} 
                 style={{margin: '6px', color: 'black'}} 
                 intent='warning' 
-                key={`module-${i}`}>
+                key={`module-${i}`}
+                onClick={() => setBotData({
+                    ...botData,
+                    module: x,
+                })}
+            >
                     {capitalizeFirstLetter(x)}
             </Button>
         )}
@@ -27,7 +50,12 @@ const CreateBot = () => {
 
     const networksPanel = <div style={panelContentStyle}>
         {AllSocialNetworks.map((x, i) => 
-            <NetworkTag socialNetwork={x} key={i} interactive/>
+            <NetworkTag socialNetwork={x} key={i} interactive
+                onClick={() => setBotData({
+                    ...botData,
+                    networks: [...botData.networks, x],
+                })}
+            />
         )}
     </div>
 
@@ -35,10 +63,20 @@ const CreateBot = () => {
         <div className='bp4-dark'>
             <FormGroup >
                 <FormGroup inline label='Bot Name: ' labelInfo='(required)' labelFor='bot-name'>
-                        <input id='bot-name' type='text' dir='auto' className={`${Classes.INPUT}`}/>
+                        <input id='bot-name' type='text' dir='auto' className={`${Classes.INPUT}`}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => setBotData({
+                                ...botData,
+                                name: e.target.value,
+                            })}
+                        />
                 </FormGroup>
                 <FormGroup inline label='Bot Description: ' labelInfo='(recommended)' labelFor='bot-desc'>
-                        <TextArea id='bot-desc' className={Classes.INPUT}/>
+                        <TextArea id='bot-desc' className={Classes.INPUT} 
+                            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setBotData({
+                                ...botData,
+                                description: e.target.value,
+                            })}
+                        />
                 </FormGroup>
             </FormGroup>
             <div style={{display: 'flex'}}>
@@ -71,7 +109,11 @@ const CreateBot = () => {
                         content={botPanelContent}
                     />
                 </div>
-                <div className='fit-content'>
+                <div>
+                    <Panel
+                        header={<h3>Bot visualisation</h3>}
+                        content={<BotCreationChart botData={botData}/>}
+                    />
                 </div>
             </form>
             <style jsx>{`

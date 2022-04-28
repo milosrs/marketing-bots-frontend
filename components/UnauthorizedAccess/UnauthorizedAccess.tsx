@@ -2,7 +2,7 @@ import React from 'react'
 import {signIn, signOut} from 'next-auth/react'
 import { Button, ButtonGroup } from '@blueprintjs/core';
 import {Networks} from '../Networks/Networks';
-import { AllSocialNetworks } from '../../const/constants';
+import { AllSocialNetworks } from '../../const/serverConstants';
 
 const UnauthorizedAccess = () => 
 <div className='container bp4-dark'>
