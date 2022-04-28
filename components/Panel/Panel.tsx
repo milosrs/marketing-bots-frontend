@@ -33,6 +33,7 @@ export const Panel = ({header, content, hOrient = 'center', vOrient = 'middle', 
     }
 
     .content {
+        width: 100%;
         display: flex;
         flex-direction: column;
     }

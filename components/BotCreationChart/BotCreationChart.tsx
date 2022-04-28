@@ -3,10 +3,12 @@ import { Canvas, NodeData } from "reaflow";
 import {BotData, createBotNode, createEdges, createModuleNode, createSocialMedia} from '../../const/graphModel';
 
 interface IProps {
-    botData: BotData
+    botData: BotData;
+    width?: number;
+    height?: number;
 }
 
-const BotCreationChart = ({ botData }: IProps) => {
+const BotCreationChart = ({ botData, width=300, height=300 }: IProps) => {
     const nodes = [
       createBotNode(botData),
       createModuleNode(botData?.module),
@@ -16,9 +18,7 @@ const BotCreationChart = ({ botData }: IProps) => {
     const edges = createEdges(nodes[0], nodes[1], nodes.slice(2));
 
     return (
-        <div>
-        <Canvas fit disabled width={800} height={600} nodes={nodes} edges={edges} />
-        </div>
+      <Canvas fit disabled width={width} height={height + 20} nodes={nodes} edges={edges} />
     )
 }
 
