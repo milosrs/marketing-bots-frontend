@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Layout from '../../components/Layout/Layout';
 import {Bot, BotDetails} from '../../components/BotDetails/BotDetails';
-import { AllSocialNetworks } from '../../const/serverConstants';
+import { AllSocialNetworks } from '../../botomania/server/botCreationData';
 
 const mockDetails = [
 {

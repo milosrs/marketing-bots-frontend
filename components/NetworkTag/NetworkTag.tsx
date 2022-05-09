@@ -1,6 +1,6 @@
 import { Button, Tag } from "@blueprintjs/core";
 import React, { useState } from "react";
-import {createIcon, SocialNetwork, SocialNetworkCollors} from '../../const/serverConstants';
+import {createIcon, SocialNetwork, SocialNetworkCollors} from '../../botomania/server/botCreationData';
 import {capitalizeFirstLetter} from '../../ts-lib/strings';
 
 interface IProps { 

@@ -1,14 +1,13 @@
 import React, { ChangeEvent, CSSProperties, LegacyRef, MutableRefObject, useEffect, useRef, useState } from 'react'
 import Layout from '../../components/Layout/Layout';
 import {NetworkTag} from '../../components/NetworkTag/NetworkTag';
-import { AllSocialNetworks, AllModules, createModuleIcon } from '../../const/serverConstants';
+import { AllSocialNetworks, AllModules, createModuleIcon } from '../../botomania/server/botCreationData';
 import {Panel} from '../../components/Panel/Panel';
 import { Button, ButtonGroup, Classes, FormGroup, InputGroup, ResizeSensor, SpinnerSize, TextArea } from '@blueprintjs/core';
 import { capitalizeFirstLetter } from '../../ts-lib/strings';
 import dynamic from 'next/dynamic';
 import { Loader } from '../../components/Loader/Loader';
-import { BotData } from '../../const/graphModel';
-import {useWindowSize} from '../../hooks/useWindowResize';
+import { BotData } from '../../botomania/graph/graphModel';
 
 const BotCreationChart = dynamic(
     () => import('../../components/BotCreationChart/BotCreationChart'), 

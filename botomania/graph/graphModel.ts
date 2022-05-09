@@ -1,6 +1,6 @@
 import { NodeData, EdgeData } from 'reaflow';
-import { capitalizeFirstLetter } from '../ts-lib/strings';
-import type {Module, SocialNetwork} from './serverConstants';
+import { capitalizeFirstLetter } from '../../ts-lib/strings';
+import type {Module, SocialNetwork} from '../server/botCreationData';
 
 export interface BotData {
     name: string;

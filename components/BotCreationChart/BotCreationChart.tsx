@@ -1,6 +1,6 @@
 import React from "react";
 import { Canvas, NodeData } from "reaflow";
-import {BotData, createBotNode, createEdges, createModuleNode, createSocialMedia} from '../../const/graphModel';
+import {BotData, createBotNode, createEdges, createModuleNode, createSocialMedia} from '../../botomania/graph/graphModel';
 
 interface IProps {
     botData: BotData;

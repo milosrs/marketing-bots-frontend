@@ -2,7 +2,7 @@ import { Button, Navbar, SpinnerSize } from '@blueprintjs/core';
 import { useRouter } from 'next/router';
 import { SessionContextValue, signOut, useSession } from 'next-auth/react';
 import React, { useEffect, useLayoutEffect, useState } from 'react'
-import {Paths} from '../../const/paths';
+import {Paths} from '../../botomania/paths';
 import {IconName} from '@blueprintjs/core'
 import { Loader } from '../Loader/Loader';
 import UnauthorizedAccess from '../UnauthorizedAccess/UnauthorizedAccess';

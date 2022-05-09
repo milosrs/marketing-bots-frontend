@@ -1,5 +1,5 @@
 import React from "react";
-import { createIcon, SocialNetwork } from '../../const/serverConstants';
+import { createIcon, SocialNetwork } from '../../botomania/server/botCreationData';
 import {capitalizeFirstLetter} from '../../ts-lib/strings';
 
 interface IProps {
