@@ -1,42 +1,45 @@
+import { JWT } from 'next-auth/jwt'
 import process from 'process'
 
 export type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 
-export interface RequestResolver {
-    success: (req: Response) => any
-    failure: (req: Response) => any
+interface RequestData {
+    url: string, 
+    body?: any,
+    headers?: HeadersInit
 }
 
-const sendRequest = async (
+const sendRequest = (
     url: string,
     method: HTTPMethod,
     body: any,
-    resolvers?: RequestResolver
-) => {
-    console.log(process.env)
-    const req = fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVER_URL}${url}`, {
+    headers?: HeadersInit,
+): Promise<Response> => 
+    fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVER_URL}${url}`, {
         method,
         body: body ? JSON.stringify(body) : null,
-    })
+        headers,
+    } as RequestInit)
 
-    if (resolvers) {
-        req.then(resolvers.success, resolvers.failure)
-    }
 
-    return req
+export const get = (data: RequestData): Promise<Response> =>
+    sendRequest(data.url, 'GET', null, data.headers)
+
+export const post = (data: RequestData): Promise<Response> =>
+    sendRequest(data.url, 'POST', data.body, data.headers)
+
+export const put = (data: RequestData): Promise<Response> =>
+    sendRequest(data.url, 'PUT', data.body, data.headers)
+
+export const patch = (data: RequestData): Promise<Response> =>
+    sendRequest(data.url, 'PUT', data.body, data.headers)
+
+export const deleteReq = (data: RequestData): Promise<Response> =>
+    sendRequest(data.url, 'DELETE', null, data.headers)
+
+type RequestHandler = (data: RequestData) => Promise<Response>  
+
+export const authorizedRequest = (token: string | undefined, reqData: RequestData, handler: RequestHandler): Promise<Response> => {
+    (reqData.headers as Record<string, string>)["Authorization"] = token ?? ''
+    return handler(reqData)
 }
-
-export const get = (url: string, resolvers?: RequestResolver) =>
-    sendRequest(url, 'GET', null, resolvers)
-
-export const post = (url: string, body: any, resolvers?: RequestResolver) =>
-    sendRequest(url, 'POST', body, resolvers)
-
-export const put = (url: string, body: any, resolvers?: RequestResolver) =>
-    sendRequest(url, 'PUT', body, resolvers)
-
-export const patch = (url: string, body: any, resolvers?: RequestResolver) =>
-    sendRequest(url, 'PUT', body, resolvers)
-
-export const deleteReq = (url: string, resolvers?: RequestResolver) =>
-    sendRequest(url, 'DELETE', null, resolvers)

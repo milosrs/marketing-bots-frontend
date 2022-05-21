@@ -27,9 +27,6 @@ const Layout = ({ children }: IProps) => {
             setLoading(false)
             setUnauthorized(false)
         }
-
-        console.log(sessionData?.status)
-        console.log(sessionData)
     }, [sessionData])
 
     const testRoute = (url: string) => router.pathname.includes(url)
