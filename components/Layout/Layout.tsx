@@ -1,69 +1,89 @@
-import { Button, Navbar, SpinnerSize } from '@blueprintjs/core';
-import { useRouter } from 'next/router';
-import { SessionContextValue, signOut, useSession } from 'next-auth/react';
+import { Button, Navbar, SpinnerSize } from '@blueprintjs/core'
+import { useRouter } from 'next/router'
+import { SessionContextValue, signOut, useSession } from 'next-auth/react'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
-import {Paths} from '../../botomania/paths';
-import {IconName} from '@blueprintjs/core'
-import { Loader } from '../Loader/Loader';
-import UnauthorizedAccess from '../UnauthorizedAccess/UnauthorizedAccess';
+import { Paths } from '../../botomania/paths'
+import { IconName } from '@blueprintjs/core'
+import { Loader } from '../Loader/Loader'
+import UnauthorizedAccess from '../UnauthorizedAccess/UnauthorizedAccess'
 
 interface IProps {
-    children: React.ReactElement;
+    children: React.ReactElement
 }
 
-const Layout = ({children}: IProps) => {
-    const router = useRouter();
-    const sessionData: SessionContextValue = useSession();
-    const [loading, setLoading] = useState<boolean>();
-    const [unauthorized, setUnauthorized] = useState<boolean>();
+const Layout = ({ children }: IProps) => {
+    const router = useRouter()
+    const sessionData: SessionContextValue = useSession()
+    const [loading, setLoading] = useState<boolean>()
+    const [unauthorized, setUnauthorized] = useState<boolean>()
 
     useEffect(() => {
         if (!sessionData || sessionData.status === 'loading') {
-            setLoading(true);   
+            setLoading(true)
         } else if (sessionData.status === 'unauthenticated') {
-            setLoading(false);
-            setUnauthorized(true);
+            setLoading(false)
+            setUnauthorized(true)
         } else {
-            setLoading(false);
-            setUnauthorized(false);
+            setLoading(false)
+            setUnauthorized(false)
         }
 
         console.log(sessionData?.status)
         console.log(sessionData)
-    }, [sessionData?.status])
+    }, [sessionData])
 
     const testRoute = (url: string) => router.pathname.includes(url)
-    
-    const navButton = (url: string, icon: IconName, text: string) => 
-    <Button 
-        type='button' className='bp4-button .bp4-large' icon={icon} text={text}
-        onClick={() => router.push(url)}
-        disabled={testRoute(url)}
-    />
 
-    if(loading) {
-        return <Loader size={SpinnerSize.LARGE}/>
+    const navButton = (url: string, icon: IconName, text: string) => (
+        <Button
+            type="button"
+            className="bp4-button .bp4-large"
+            icon={icon}
+            text={text}
+            onClick={() => router.push(url)}
+            disabled={testRoute(url)}
+        />
+    )
+
+    if (loading) {
+        return <Loader size={SpinnerSize.LARGE} />
     } else if (unauthorized) {
-        return <UnauthorizedAccess/>
+        return <UnauthorizedAccess />
     }
 
     return (
-        <div className='padded'>
-            <Navbar fixedToTop={true} className='bp4-dark'>
-                <Navbar.Group align='left'>
+        <div className="padded">
+            <Navbar fixedToTop={true} className="bp4-dark">
+                <Navbar.Group align="left">
                     <Navbar.Heading>Botomania</Navbar.Heading>
-                    <Navbar.Divider/>
+                    <Navbar.Divider />
                     {navButton(Paths.HOME, 'home', 'Home')}
                     {navButton(Paths.CREATE_BOT, 'map', 'Create Bot')}
-                    {navButton(Paths.BOT_ACTIONS, 'predictive-analysis', 'Bot Actions')}
-                    {navButton(Paths.USER_ACTIONS, 'take-action', 'User Actions')}
+                    {navButton(
+                        Paths.BOT_ACTIONS,
+                        'predictive-analysis',
+                        'Bot Actions'
+                    )}
+                    {navButton(
+                        Paths.USER_ACTIONS,
+                        'take-action',
+                        'User Actions'
+                    )}
                 </Navbar.Group>
 
-                <Navbar.Group align='right'>
-                    <span className='greet'> Hello, {sessionData?.data?.user?.name}</span>
+                <Navbar.Group align="right">
+                    <span className="greet">
+                        {' '}
+                        Hello, {sessionData?.data?.user?.name}
+                    </span>
                     <Button
-                        icon='power' type='button' className='bp4-button .bp4-large .bp4-fill' text='Logout'
-                        onClick={() => signOut({redirect: true, callbackUrl: "/"})}
+                        icon="power"
+                        type="button"
+                        className="bp4-button .bp4-large .bp4-fill"
+                        text="Logout"
+                        onClick={() =>
+                            signOut({ redirect: true, callbackUrl: '/' })
+                        }
                     />
                 </Navbar.Group>
             </Navbar>
@@ -81,4 +101,4 @@ const Layout = ({children}: IProps) => {
     )
 }
 
-export default Layout;
+export default Layout

@@ -1,18 +1,23 @@
 import process from 'process'
 
-export type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+export type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 
 export interface RequestResolver {
-    success: (req: Response) => any,
-    failure: (req: Response) => any,
+    success: (req: Response) => any
+    failure: (req: Response) => any
 }
 
-const sendRequest = async (url: string, method: HTTPMethod, body: any, resolvers?: RequestResolver) => {
+const sendRequest = async (
+    url: string,
+    method: HTTPMethod,
+    body: any,
+    resolvers?: RequestResolver
+) => {
     console.log(process.env)
     const req = fetch(`${process.env.NEXT_PUBLIC_BACKEND_SERVER_URL}${url}`, {
         method,
         body: body ? JSON.stringify(body) : null,
-    });
+    })
 
     if (resolvers) {
         req.then(resolvers.success, resolvers.failure)

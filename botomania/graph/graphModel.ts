@@ -1,12 +1,12 @@
-import { NodeData, EdgeData } from 'reaflow';
-import { capitalizeFirstLetter } from '../../ts-lib/strings';
-import type {Module, SocialNetwork} from '../server/botCreationData';
+import { NodeData, EdgeData } from 'reaflow'
+import { capitalizeFirstLetter } from '../../ts-lib/strings'
+import type { Module, SocialNetwork } from '../server/botCreationData'
 
 export interface BotData {
-    name: string;
-    description: string;
-    module?: Module;
-    networks: SocialNetwork[];
+    name: string
+    description: string
+    module?: Module
+    networks: SocialNetwork[]
 }
 
 export const createInitial = (): BotData => ({
@@ -30,30 +30,32 @@ export const createModuleNode = (node?: Module): NodeData => ({
     height: 70,
 })
 
-export const createSocialMedia = (nodes: SocialNetwork[]): NodeData[] => 
+export const createSocialMedia = (nodes: SocialNetwork[]): NodeData[] =>
     nodes.map((x, i) => ({
         id: `${2 + i + 1}`,
         text: x,
         width: 75,
         height: 30,
-    }));
+    }))
 
 export const createEdges = (
-    bot: NodeData, 
-    module: NodeData, 
-    sn: NodeData[],
+    bot: NodeData,
+    module: NodeData,
+    sn: NodeData[]
 ) => {
     const botMod: EdgeData = {
         id: `${bot.id}-${module.id}`,
         from: bot.id,
         to: module.id,
-    };
+    }
 
-    const modToSn: EdgeData[] = sn.map((x, i): EdgeData => ({
-        id: `${module.id}-${x.id}`,
-        from: module.id,
-        to: x.id,
-    }));
+    const modToSn: EdgeData[] = sn.map(
+        (x, i): EdgeData => ({
+            id: `${module.id}-${x.id}`,
+            from: module.id,
+            to: x.id,
+        })
+    )
 
-    return [botMod, ...modToSn];
+    return [botMod, ...modToSn]
 }
