@@ -40,6 +40,13 @@ export const deleteReq = (data: RequestData): Promise<Response> =>
 type RequestHandler = (data: RequestData) => Promise<Response>  
 
 export const authorizedRequest = (token: string | undefined, reqData: RequestData, handler: RequestHandler): Promise<Response> => {
-    (reqData.headers as Record<string, string>)["Authorization"] = token ?? ''
+    if (reqData.headers) {
+        (reqData.headers as Record<string, string>)["Authorization"] = token ?? ''    
+    } else {
+        reqData.headers = {
+            "Authorization": token,
+        } as Record<string, string>
+    }
+    
     return handler(reqData)
 }

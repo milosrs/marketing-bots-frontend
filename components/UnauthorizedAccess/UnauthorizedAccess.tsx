@@ -3,7 +3,7 @@ import { signIn } from 'next-auth/react'
 import { Button, ButtonGroup } from '@blueprintjs/core'
 import { Networks } from '../Networks/Networks'
 import { AllSocialNetworks } from '../../botomania/server/botCreationData'
-import { GetServiceInfo } from '../../api/info'
+import { get } from '../../api/base'
 
 const UnauthorizedAccess = () => (
     <div className="container bp4-dark">
@@ -38,7 +38,7 @@ const UnauthorizedAccess = () => (
                     type="button"
                     className="bp4-button bp4-large bp4-fill"
                     text={`Get Server Info`}
-                    onClick={() => GetServiceInfo()}
+                    onClick={() => get({url: '/service/info'})}
                     active={false}
                 />
             </ButtonGroup>

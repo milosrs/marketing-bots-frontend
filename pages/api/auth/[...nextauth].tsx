@@ -34,10 +34,10 @@ export default NextAuth({
     callbacks: {
         jwt: (data: JWTData): Awaitable<JWT> => {
             if(data.user) {
-                const url = env.NEXT_PUBLIC_BACKEND_SERVER_URL + '/auth/user/login'
+                const url = '/auth/user/login'
                 authorizedRequest(data.account?.access_token, {url}, post)
             } else {
-                throw new Error("No user data present. Behavior will be undefined.")
+               console.log("No user data present. Behavior will be undefined.")
             }
             return data.token
         },
@@ -47,12 +47,20 @@ export default NextAuth({
     },
     events: {
         signOut: (message: LogoutMessage): Awaitable<void> => {
-            const url = env.NEXT_PUBLIC_BACKEND_SERVER_URL + '/auth/user/logout'
-            post({
-                url: url,
-                body: {email: message.session.user?.email},
-            })
-            .then(_ => console.log("Logout success"), r => console.log("Logout fail: ", r))
+            const url = '/auth/user/logout'
+            if (message.session?.user?.name) {
+                post({
+                    url: url,
+                    body: {name: message.session.user?.name},
+                })
+                .then(_ => console.log("Logout success"), r => console.log("Logout fail: ", r))
+            } else if(message.token.name) {
+                post({
+                    url: url,
+                    body: {name: message.token.name},
+                })
+                .then(_ => console.log("Logout success"), r => console.log("Logout fail: ", r))
+            }
         },
     },
     secret: 'mysecret',
